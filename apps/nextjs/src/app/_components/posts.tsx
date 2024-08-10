@@ -1,9 +1,9 @@
 "use client";
 
-import type { RouterOutputs } from "@acme/api";
-import { CreatePostSchema } from "@acme/db/schema";
-import { cn } from "@acme/ui";
-import { Button } from "@acme/ui/button";
+import type { RouterOutputs } from "@karobar/api";
+import { CreatePostSchema } from "@karobar/db/schema";
+import { cn } from "@karobar/ui";
+import { Button } from "@karobar/ui/button";
 import {
   Form,
   FormControl,
@@ -11,9 +11,9 @@ import {
   FormItem,
   FormMessage,
   useForm,
-} from "@acme/ui/form";
-import { Input } from "@acme/ui/input";
-import { toast } from "@acme/ui/toast";
+} from "@karobar/ui/form";
+import { Input } from "@karobar/ui/input";
+import { toast } from "@karobar/ui/toast";
 
 import { api } from "~/trpc/react";
 
