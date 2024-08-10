@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Button, Pressable, Text, TextInput, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Link, Stack } from "expo-router";
-import { FlashList } from "@shopify/flash-list";
+import { Link } from "expo-router";
 
 import type { RouterOutputs } from "~/utils/api";
 import { api } from "~/utils/api";
@@ -114,46 +112,56 @@ function MobileAuth() {
   );
 }
 
-export default function Index() {
-  const utils = api.useUtils();
-
-  const postQuery = api.post.all.useQuery();
-
-  const deletePostMutation = api.post.delete.useMutation({
-    onSettled: () => utils.post.all.invalidate(),
-  });
-
+const Home = () => {
   return (
-    <SafeAreaView className="bg-background">
-      {/* Changes page title visible on the header */}
-      <Stack.Screen options={{ title: "Home Page" }} />
-      <View className="h-full w-full bg-background p-4">
-        <Text className="pb-2 text-center text-5xl font-bold text-foreground">
-          Create <Text className="text-primary">T3</Text> Turbo
-        </Text>
-
-        <MobileAuth />
-
-        <View className="py-2">
-          <Text className="font-semibold italic text-primary">
-            Press on a post
-          </Text>
-        </View>
-
-        <FlashList
-          data={postQuery.data}
-          estimatedItemSize={20}
-          ItemSeparatorComponent={() => <View className="h-2" />}
-          renderItem={(p) => (
-            <PostCard
-              post={p.item}
-              onDelete={() => deletePostMutation.mutate(p.item.id)}
-            />
-          )}
-        />
-
-        <CreatePost />
-      </View>
-    </SafeAreaView>
+    <View>
+      <Text>Home</Text>
+    </View>
   );
-}
+};
+
+export default Home;
+
+// export default function Index() {
+//   const utils = api.useUtils();
+
+//   const postQuery = api.post.all.useQuery();
+
+//   const deletePostMutation = api.post.delete.useMutation({
+//     onSettled: () => utils.post.all.invalidate(),
+//   });
+
+//   return (
+//     <SafeAreaView className="bg-background">
+//       {/* Changes page title visible on the header */}
+//       <Stack.Screen options={{ title: "Home Page" }} />
+//       <View className="h-full w-full bg-background p-4">
+//         <Text className="pb-2 text-center text-5xl font-bold text-foreground">
+//           Create <Text className="text-primary">T3</Text> Turbo
+//         </Text>
+
+//         <MobileAuth />
+
+//         <View className="py-2">
+//           <Text className="font-semibold italic text-primary">
+//             Press on a post
+//           </Text>
+//         </View>
+
+//         <FlashList
+//           data={postQuery.data}
+//           estimatedItemSize={20}
+//           ItemSeparatorComponent={() => <View className="h-2" />}
+//           renderItem={(p) => (
+//             <PostCard
+//               post={p.item}
+//               onDelete={() => deletePostMutation.mutate(p.item.id)}
+//             />
+//           )}
+//         />
+
+//         <CreatePost />
+//       </View>
+//     </SafeAreaView>
+//   );
+// }
