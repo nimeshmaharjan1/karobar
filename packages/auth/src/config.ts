@@ -4,10 +4,10 @@ import type {
   Session as NextAuthSession,
 } from "next-auth";
 import { skipCSRFCheck } from "@auth/core";
+import GitHub from "@auth/core/providers/github";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@karobar/db/client";
 import { Account, Session, User } from "@karobar/db/schema";
-import Discord from "next-auth/providers/discord";
 
 import { env } from "../env";
 
@@ -37,7 +37,7 @@ export const authConfig = {
       }
     : {}),
   secret: env.AUTH_SECRET,
-  providers: [Discord],
+  providers: [GitHub],
   callbacks: {
     session: (opts) => {
       if (!("user" in opts))
