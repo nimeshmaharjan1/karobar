@@ -1,13 +1,14 @@
 import type { Metadata, Viewport } from "next";
+
 import { cn } from "@karobar/ui";
-import { ThemeProvider, ThemeToggle } from "@karobar/ui/theme";
+import { ThemeProvider } from "@karobar/ui/theme";
 import { Toaster } from "@karobar/ui/toast";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 
 import { TRPCReactProvider } from "~/trpc/react";
 
 import "~/app/globals.css";
+
+import { Inter as FontSans } from "next/font/google";
 
 import { env } from "~/env";
 
@@ -39,21 +40,25 @@ export const viewport: Viewport = {
   ],
 };
 
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans text-foreground antialiased",
-          GeistSans.variable,
-          GeistMono.variable,
+          "bg-background text-foreground antialiased",
+          fontSans.className,
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TRPCReactProvider>{props.children}</TRPCReactProvider>
-          <div className="absolute bottom-4 right-4">
+          {/* <div className="absolute bottom-4 right-4">
             <ThemeToggle />
-          </div>
+          </div> */}
           <Toaster />
         </ThemeProvider>
       </body>

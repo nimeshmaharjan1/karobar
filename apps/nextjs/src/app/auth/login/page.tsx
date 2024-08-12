@@ -11,7 +11,7 @@ import {
 import { Input } from "@karobar/ui/input";
 import { Label } from "@karobar/ui/label";
 
-export function LoginForm() {
+const LoginForm = () => {
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -56,4 +56,6 @@ export function LoginForm() {
       </CardContent>
     </Card>
   );
-}
+};
+
+export default LoginForm;
